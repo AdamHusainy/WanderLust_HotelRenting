@@ -1,6 +1,8 @@
-if (process.env.NODE_ENV != "production") {
-  require("dotenv").config();
-}
+// if (process.env.NODE_ENV != "production") {
+//   require("dotenv").config();
+// }
+require("dotenv").config();
+
 
 const express = require("express");
 const app = express();
@@ -35,7 +37,7 @@ async function main() {
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.urlencoded({ extented: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
