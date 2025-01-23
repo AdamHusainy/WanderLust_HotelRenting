@@ -1,8 +1,4 @@
 <% layout("/layouts/boilerplate") %>
-<script>
-  const mapToken = "<%= process.env.MAP_TOKEN %>";
-  const listing = <%- JSON.stringify(listing) %>;
-</script>
 <body>
   <div class="row">
     <div class="col-8 offset-3">
@@ -26,6 +22,7 @@
         <p class="card-text"><%= listing.country %></p>
       </div>
     </div>
+
     <% if (currentUser && listing.owner && listing.owner._id &&
     listing.owner._id.equals(currentUser._id)) { %>
 
@@ -33,7 +30,7 @@
       <a
         href="/listings/<%= listing._id %>/edit"
         class="btn btn-danger col-1 offset-3"
-        >edit</a
+        >Edit</a
       >
 
       <form method="POST" action="/listings/<%= listing._id %>/?_method=DELETE">
@@ -41,18 +38,11 @@
       </form>
     </div>
     <% } %>
-    <div class="btns">
-      <a
-        href="/listings/<%= listing._id %>/newBookingCreate"
-        class="btn btn-danger col-1.2 offset-3 mt-2"
-        >Book Now
-      </a>
-    </div>
 
     <div class="col-8 offset-3 mb-3">
       <hr />
       <% if (currentUser) { %>
-      <h4>leave a Review</h4>
+      <h4>Leave a Review</h4>
       <form
         action="/listings/<%= listing.id %>/reviews"
         method="POST"
@@ -60,9 +50,7 @@
         class="needs-validation"
       >
         <div class="mb-3 mt-3">
-          <label for="rating" class="form-label" name="review[rating]"
-            >Rating</label
-          >
+          <label for="rating" class="form-label" name="review[rating]">Rating</label>
           <fieldset class="starability-slot">
             <legend></legend>
             <input
@@ -114,7 +102,6 @@
 
         <div class="mb-3 mt-3">
           <label for="comment">Comment</label>
-
           <textarea
             name="review[comment]"
             id="comment"
@@ -123,15 +110,17 @@
             rows="5"
             required
           ></textarea>
-          <div class="invalid-feedback">please add some comment for review</div>
+          <div class="invalid-feedback">Please add some comment for review</div>
           <button class="btn btn-outline-dark mt-3">Submit</button>
         </div>
       </form>
       <hr />
-      <% } %> <% if (listing.reviews.length > 0) { %>
+      <% } %>
+
+      <% if (listing.reviews.length > 0) { %>
       <div class="row">
         <p><b>All Reviews</b></p>
-        <% for(review of listing.reviews ) { %>
+        <% for (review of listing.reviews) { %>
         <div class="card ms-3 mb-3 col-5">
           <div class="card-body">
             <h5 class="card-title">@<%= review.author.username %></h5>
@@ -139,12 +128,12 @@
               class="starability-result card-text"
               data-rating="<%= review.rating %>"
             ></p>
-            <p class="card-text"><%=review.comment%></p>
+            <p class="card-text"><%= review.comment %></p>
 
             <form
               class="mb-3"
               method="POST"
-              action="/listings/<%= listing._id %>/reviews/<%=review._id%>?_method=DELETE"
+              action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
             >
               <button class="btn btn-sm btn-dark">Delete</button>
             </form>
@@ -154,28 +143,5 @@
       </div>
       <% } %>
     </div>
-    <div class="row-1">
-      <div class=".col-8 offset-3 mb-3">
-        <h3>Where you'll be</h3>
-        <div id="map"></div>
-      </div>
-    </div>
-    <hr />
-    <div class="row-1">
-      <h4>All Booking Lists</h4>
-      <ul>
-        <% if (listing && listing.bookings) { %> <% for(let booking of
-        listing.bookings) { %>
-        <p><%= booking %></p>
-        <form
-          method="POST"
-          action="/listings/<%= listing._id %>/bookings/<%= booking._id %>?_method=DELETE"
-        >
-          <button class="btn btn-sm btn-dark">Delete</button>
-        </form>
-        <% } %> <% }%>
-      </ul>
-    </div>
   </div>
-  <script src="/js/map.js"></script>
 </body>

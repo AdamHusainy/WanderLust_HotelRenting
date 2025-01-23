@@ -110,10 +110,10 @@
 
 /* MAP */
 
-#map {
+/* #map {
   height: 400px;
   width: 90vh;
-}
+} */
 
 /* filters  */
 
@@ -133,20 +133,35 @@
   cursor: pointer;
 }
 .filter p {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
 }
 
 /* taxSwitch */
-.tax-info {
-  display: none;
-}
 
 .tax-toggle {
   border: 1px solid black;
   border-radius: 1rem;
   height: 3rem;
   padding: 0.7rem;
-  margin-left: 1rem;
+  margin-left: 2rem;
   display: flex;
   align-items: center;
+}
+#tax-info1{
+  display: none;
+}
+/* total display */
+.total-info {
+  display: none;
+  margin-top: 5px;
+}
+
+
+.price {
+  font-weight: normal; /* Removed bold */
+}
+
+.total-price {
+  font-weight: bold;
+  color: green;
 }
