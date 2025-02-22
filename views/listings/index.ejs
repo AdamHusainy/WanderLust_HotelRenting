@@ -70,12 +70,12 @@
     </div>
   </div>
 
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ">
     <% for( let listing of allListings ) { %>
     <a
       href="/listings/<%= listing._id %>"
       class="card col listing-card"
-      style="width: 20rem"
+     
     >
       <div class="card col" style="width: 20rem">
         <img
@@ -86,7 +86,7 @@
         />
         <div class="card-img-overlay">&#10084;</div>
         <div class="card-body">
-          <p class="card-text">
+          <p class="card-text mt-2">
             <b><%= listing.title %> </b> <br />
             &#8377; <span class="price"><%= listing.price %></span>/Night
             <i id="tax-info1">&nbsp; &nbsp; +18% GST</i>
