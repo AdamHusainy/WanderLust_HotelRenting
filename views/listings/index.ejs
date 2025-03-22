@@ -77,7 +77,7 @@
       class="card col listing-card"
      
     >
-      <div class="card col" style="width: 20rem">
+      <div class="card col listing-card" style="width: 20rem">
         <img
           src="<%= listing.image.url  %>"
           class="card-img-top"
@@ -89,7 +89,7 @@
           <p class="card-text mt-2">
             <b><%= listing.title %> </b> <br />
             &#8377; <span class="price"><%= listing.price %></span>/Night
-            <i id="tax-info1">&nbsp; &nbsp; +18% GST</i>
+            <i class="tax-info">&nbsp; &nbsp; +18% GST</i>
             <br>
               <b class="total-info">Total: &#8377; <span class="total-price"></span></b>
             
@@ -108,7 +108,7 @@
     let taxInfo = document.getElementsByClassName("total-info");
     let priceElements = document.getElementsByClassName("price");
     let totalPriceElements = document.getElementsByClassName("total-price");
-    let taxinfo1=document.getElementById("tax-info1")
+    let gstlabel=document.getElementsByClassName("tax-info")
 
     for (let i = 0; i < priceElements.length; i++) {
       let price = parseFloat(priceElements[i].innerText.replace("₹", "").trim());
@@ -116,16 +116,8 @@
       let totalPrice = price + gst;
 
       totalPriceElements[i].innerText = totalPrice.toLocaleString("en-IN");
-
-      if (taxInfo[i].style.display !== "inline") {
-        taxInfo[i].style.display = "inline";
-        taxinfo1.style.display = "inline";
-
-      } else {
-        taxInfo[i].style.display = "none";
-        taxinfo1.style.display = "none";
-
-      }
+      taxInfo[i].style.display = taxInfo[i].style.display === "inline" ? "none" : "inline";
+      gstlabel[i].style.display = gstlabel[i].style.display === "inline" ? "none" : "inline";
     }
   });
 </script>

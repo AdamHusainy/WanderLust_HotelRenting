@@ -78,10 +78,8 @@ opacity: 1;
 }
 
 /* card */
-.card{
+.listing-card{
   border: none !important;
-  
- 
 }
 .listing-card {
   border: none !important;
@@ -109,6 +107,7 @@ opacity: 1;
   font-weight: 400;
   
 }
+
 
 /* card effect */
 
@@ -194,7 +193,7 @@ opacity: 1;
   display: flex;
   align-items: center;
 }
-#tax-info1{
+.tax-info,.total-info{
   display: none;
 }
 /* total display */
